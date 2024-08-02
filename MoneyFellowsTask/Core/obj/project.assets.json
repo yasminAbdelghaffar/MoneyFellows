@@ -53,7 +53,13 @@
       "net8.0": {
         "targetAlias": "net8.0",
         "centralPackageVersions": {
-          "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "[1.19.6, )"
+          "MediatR": "[12.4.0, )",
+          "Microsoft.AspNet.Identity.Core": "[2.2.4, )",
+          "Microsoft.AspNetCore.Mvc.Versioning": "[5.1.0, )",
+          "Microsoft.Extensions.Identity.Core": "[8.0.7, )",
+          "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "[1.19.6, )",
+          "Newtonsoft.Json": "[13.0.3, )",
+          "System.IdentityModel.Tokens.Jwt": "[8.0.1, )"
         },
         "imports": [
           "net461",
