@@ -9,5 +9,15 @@ namespace Infrastructure.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public bool IsEmailTaken(string email)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsUsernameTaken(string user)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
