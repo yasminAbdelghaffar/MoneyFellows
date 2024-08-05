@@ -1,6 +1,7 @@
 ﻿using Core.Entities;
 using Core.Interfaces.Repositories;
 using Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories
 {
@@ -13,24 +14,25 @@ namespace Infrastructure.Repositories
             _context = context;
         }
 
-        public Task AddAsync(User user)
+        public async Task AddAsync(User user)
         {
-            throw new NotImplementedException();
+            _context.User.Add(user);
+            await _context.SaveChangesAsync();
         }
 
         public bool IsEmailTaken(string email)
         {
-            throw new NotImplementedException();
+            return _context.User.Any(u => u.Email == email);
         }
 
         public bool IsUsernameTaken(string user)
         {
-            throw new NotImplementedException();
+            return _context.User.Any(u => u.Username == user);
         }
 
-        public Task<User> ValidateUserAsync(string Username, string Password)
+        public async Task<User> ValidateUserAsync(string Username, string Password)
         {
-            throw new NotImplementedException();
+            return await _context.User.FirstOrDefaultAsync(u => u.Username == Username && u.Password == Password);
         }
     }
 }

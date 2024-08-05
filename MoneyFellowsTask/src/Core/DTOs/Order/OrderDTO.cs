@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Core.DTOs.Order
 {
-    internal class OrderDTO
+    public class OrderDTO
     {
         public int Id { get; set; }
         [Required]

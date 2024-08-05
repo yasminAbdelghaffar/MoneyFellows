@@ -1,19 +1,14 @@
-﻿using Core.DTOs.Product;
+﻿using Core.DTOs.Order;
 using Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Interfaces.Repositories
 {
     public interface IOrderRepository
     {
-        Task AddAsync(Product product);
-        Task UpdateAsync(Product product);
+        Task AddAsync(Order order);
+        Task UpdateAsync(Order order);
         Task DeleteAsync(long id);
-        Task<List<ProductDTO>> GetAllAsync(int? userId, int? pageNumber, int? pageSize);
-        Task<ProductDTO> GetByIdAsync(long id);
+        Task<List<OrderDTO>> GetAllAsync(int? userId, int? pageNumber, int? pageSize);
+        Task<OrderDTO> GetByIdAsync(long id);
     }
 }

@@ -2,6 +2,7 @@
 using Core.Entities;
 using Core.Interfaces.Repositories;
 using Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories
 {
@@ -14,29 +15,49 @@ namespace Infrastructure.Repositories
             _context = context;
         }
 
-        public Task AddAsync(Product product)
+        public async Task AddAsync(Product product)
         {
-            throw new NotImplementedException();
+            _context.Product.Add(product);
+            await _context.SaveChangesAsync();
         }
 
-        public Task DeleteAsync(long id)
+        public async Task DeleteAsync(long id)
         {
-            throw new NotImplementedException();
+            _context.Product.Remove(_context.Product.FirstOrDefault(x => x.Id == id));
+            await _context.SaveChangesAsync();
         }
 
-        public Task<List<ProductDTO>> GetAllAsync(string? merchant, int? pageNumber, int? pageSize)
+        public async Task<List<ProductDTO>> GetAllAsync(string? merchant, int? pageNumber, int? pageSize)
         {
-            throw new NotImplementedException();
+            int currentPage = pageNumber ?? 1;
+            int currentPageSize = pageSize ?? 10;
+
+            return await _context.Product.AsNoTracking().Where(x => string.IsNullOrWhiteSpace(merchant) || x.Merchant == merchant).Select(p => new ProductDTO()
+            {
+                Merchant = p.Merchant,
+                Price = p.Price,
+                ProductDescription = p.ProductDescription,
+                ProductName = p.ProductName,
+                ProductImage = p.ProductImage
+            }).Skip((currentPage - 1) * currentPageSize).Take(currentPageSize).ToListAsync();
         }
 
-        public Task<ProductDTO> GetByIdAsync(long id)
+        public async Task<ProductDTO> GetByIdAsync(long id)
         {
-            throw new NotImplementedException();
+            return await _context.Product.AsNoTracking().Where(x => x.Id == id).Select(p => new ProductDTO()
+            {
+                Merchant = p.Merchant,
+                Price = p.Price,
+                ProductDescription = p.ProductDescription,
+                ProductName = p.ProductName,
+                ProductImage = p.ProductImage
+            }).FirstOrDefaultAsync();
         }
 
-        public Task UpdateAsync(Product product)
+        public async Task UpdateAsync(Product product)
         {
-            throw new NotImplementedException();
+            _context.Product.Update(product);
+            await _context.SaveChangesAsync();
         }
     }
 }
