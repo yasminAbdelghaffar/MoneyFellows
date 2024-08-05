@@ -17,5 +17,13 @@ namespace API.Controllers
             var response = mediator.Send(command);
             return Ok(response);
         }
+
+        [HttpPost]
+        [Route("register-admin")]
+        public async Task<IActionResult> RegisterAdminAsync([FromBody] RegisterUserCommand command, [FromServices] IMediator mediator)
+        {
+            var response = mediator.Send(command);
+            return Ok(response);
+        }
     }
 }
