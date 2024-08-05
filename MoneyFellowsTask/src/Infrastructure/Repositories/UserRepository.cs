@@ -1,10 +1,18 @@
 ﻿using Core.Entities;
 using Core.Interfaces.Repositories;
+using Infrastructure.Persistence;
 
 namespace Infrastructure.Repositories
 {
     public class UserRepository : IUserRepository
     {
+        private readonly ApplicationDBContext _context;
+
+        public UserRepository(ApplicationDBContext context)
+        {
+            _context = context;
+        }
+
         public Task AddAsync(User user)
         {
             throw new NotImplementedException();

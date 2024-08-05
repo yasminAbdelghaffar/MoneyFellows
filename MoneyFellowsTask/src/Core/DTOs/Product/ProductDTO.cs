@@ -11,7 +11,7 @@ namespace Core.DTOs.Product
         [Alphabetic]
         public string ProductName { get; set; }
         public string ProductDescription { get; set; }
-        public Blob? ProductImage { get; set; }
+        public byte[]? ProductImage { get; set; }
         public decimal Price { get; set; }
         public string Merchant { get; set; }
     }

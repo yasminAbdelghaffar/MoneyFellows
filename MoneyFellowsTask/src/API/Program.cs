@@ -19,6 +19,7 @@ builder.Services.AddApiVersioning(o =>
 });
 builder.Services.AddRepositories();
 builder.Services.AddServices();
+builder.Services.RegisterPostgressDbContext(builder.Configuration);
 Log.Logger = new LoggerConfiguration()
     .ReadFrom.Configuration(builder.Configuration)
     .Enrich.FromLogContext()
