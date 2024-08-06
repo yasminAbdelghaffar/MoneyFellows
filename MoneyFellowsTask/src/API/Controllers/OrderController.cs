@@ -23,7 +23,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        [Route("{pageSize}/{pageNumber}/{merchant}")]
+        [Route("{pageSize}/{pageNumber}/{userId}")]
         public async Task<ActionResult> GetAllOrders([FromRoute] int? pageSize, [FromRoute] int? pageNumber, [FromRoute] int? userId, [FromServices] IMediator mediator)
         {
             var query = new GetAllOrdersQuery(pageSize, pageNumber, userId);
@@ -31,7 +31,7 @@ namespace API.Controllers
             return Ok(Orders);
         }
 
-        [UserTypeActionFilter(UserType.Admin)]
+        [UserTypeActionFilter(UserType.User)]
         [HttpPost]
         public async Task<ActionResult> CreateOrder([FromBody] AddOrderCommand command, [FromServices] IMediator mediator)
         {
@@ -39,7 +39,7 @@ namespace API.Controllers
             return Ok(result);
         }
 
-        [UserTypeActionFilter(UserType.Admin)]
+        [UserTypeActionFilter(UserType.User)]
         [HttpPut]
         [Route("{id}")]
         public async Task<ActionResult> UpdateOrder([FromBody] UpdateOrderCommand command, [FromServices] IMediator mediator)
@@ -48,7 +48,7 @@ namespace API.Controllers
             return NoContent();
         }
 
-        [UserTypeActionFilter(UserType.Admin)]
+        [UserTypeActionFilter(UserType.User)]
         [HttpDelete]
         [Route("{id}")]
         public async Task<ActionResult> DeleteOrder([FromRoute] DeleteOrderCommand command, [FromServices] IMediator mediator)

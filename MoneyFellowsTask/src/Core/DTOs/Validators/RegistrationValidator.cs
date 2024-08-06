@@ -58,15 +58,11 @@ namespace Core.Validators
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            if (value is string str && str.All(char.IsLetter))
+            if (value is string str && str.All(char.IsLetterOrDigit))
             {
                 return ValidationResult.Success;
             }
-            else if (value is string numeric && numeric.All(char.IsNumber))
-            {
-                return ValidationResult.Success;
-            }
-            return new ValidationResult("The field must contain only alphabetic characters.");
+            return new ValidationResult("The field must contain only alphanumeric characters.");
         }
     }
 }

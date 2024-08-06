@@ -21,6 +21,7 @@ namespace Application.Commands.Orders
                 TotalCost = request.Order.TotalCost,  
                 UserId = request.Order.User,
                 DeliveryTime = request.Order.DeliveryTime,
+                OrderProducts = request.Order.OrderDetails.Select(x => new OrderProducts { ProductId = x.ProductId, Quantity = x.Quantity }).ToList(),
             };
 
             await _orderRepository.AddAsync(order);

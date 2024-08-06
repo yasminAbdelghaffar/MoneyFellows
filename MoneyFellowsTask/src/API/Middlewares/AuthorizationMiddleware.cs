@@ -25,6 +25,10 @@ namespace API.Middlewares
         {
             try
             {
+                if(context.Request.Path.ToString().Contains("swagger") || context.Request.Path.ToString().Contains("register") || context.Request.Path.ToString().Contains("login"))
+                {
+                    return true;
+                }
                 if (token == null)
                 {
                     throw new ArgumentNullException(InvalidJWTToken);

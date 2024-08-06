@@ -2,7 +2,7 @@
 
 namespace Core.Entities
 {
-    public class Order : AuditEntity
+    public class Order
     {
         [Key]
         public int Id { get; set; }
@@ -15,5 +15,6 @@ namespace Core.Entities
         [Required]
         public DateTime DeliveryTime { get; set; }
         public User User { get; set; }
+        public List<OrderProducts> OrderProducts { get; set; }
     }
 }

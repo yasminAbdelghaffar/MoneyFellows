@@ -47,6 +47,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "centralPackageVersions": {
+            "FluentValidation": "[11.9.2, )",
+            "FluentValidation.AspNetCore": "[11.3.0, )",
             "MediatR": "[12.4.0, )",
             "Microsoft.AspNet.Identity.Core": "[2.2.4, )",
             "Microsoft.AspNetCore.Mvc.Versioning": "[5.1.0, )",
@@ -57,6 +59,7 @@
             "Microsoft.EntityFrameworkCore.Tools": "[8.0.7, )",
             "Microsoft.Extensions.Identity.Core": "[8.0.7, )",
             "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "[1.19.6, )",
+            "Moq": "[4.20.70, )",
             "Newtonsoft.Json": "[13.0.3, )",
             "Npgsql": "[8.0.3, )",
             "Npgsql.EntityFrameworkCore.PostgreSQL": "[8.0.4, )",
@@ -64,7 +67,9 @@
             "Serilog.Extensions.Hosting": "[8.0.0, )",
             "Serilog.Settings.Configuration": "[8.0.2, )",
             "Serilog.Sinks.File": "[6.0.0, )",
-            "System.IdentityModel.Tokens.Jwt": "[8.0.1, )"
+            "System.IdentityModel.Tokens.Jwt": "[8.0.1, )",
+            "xunit.assert": "[2.9.0, )",
+            "xunit.extensibility.core": "[2.9.0, )"
           },
           "imports": [
             "net461",

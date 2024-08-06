@@ -3,16 +3,16 @@ using Core.Entities;
 using Core.Enums;
 using Core.Interfaces.Repositories;
 using MediatR;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNet.Identity;
 
 namespace Application.Commands.RegisterUser
 {
     public class RegisterAdminCommandHandler : IRequestHandler<RegisterUserCommand, RegistrationResult>
     {
         private readonly IUserRepository _userRepository;
-        private readonly IPasswordHasher<RegisterationUser> _passwordHasher;
+        private readonly IPasswordHasher _passwordHasher;
 
-        public RegisterAdminCommandHandler(IUserRepository userRepository, IPasswordHasher<RegisterationUser> passwordHasher)
+        public RegisterAdminCommandHandler(IUserRepository userRepository, IPasswordHasher passwordHasher)
         {
             _userRepository = userRepository;
             _passwordHasher = passwordHasher;
@@ -28,17 +28,16 @@ namespace Application.Commands.RegisterUser
         #region Helper Methods
         private User MapAdminEntity(RegisterationUser request)
         {
-            var hashedPassword = _passwordHasher.HashPassword(request, request.Password);
+            var hashedPassword = _passwordHasher.HashPassword(request.Password);
             return new User
             {
                 Username = request.Username,
                 Email = request.Email,
                 Password = hashedPassword,
+                FirstName = request.FirstName,
+                LastName = request.LastName,
+                Phone = request.Phone,
                 Type = UserType.Admin,
-                CreationDate = DateTime.UtcNow,
-                LastModifiedDate = DateTime.UtcNow,
-                CreatedBy = request.Username,
-                LastModifiedBy = request.Username,
             };
         }
         #endregion

@@ -1,11 +1,7 @@
 ﻿using Application.Services.Interfaces;
 using Core.Interfaces.Repositories;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
 
 namespace Application.Commands.Login
 {
@@ -13,16 +9,19 @@ namespace Application.Commands.Login
     {
         private readonly IUserRepository _userRepository;
         private readonly ITokenService _tokenService;
+        private readonly IPasswordHasher _passwordHasher;
 
-        public LoginCommandHandler(IUserRepository userRepository, ITokenService tokenService)
+        public LoginCommandHandler(IUserRepository userRepository, ITokenService tokenService, IPasswordHasher passwordHasher)
         {
             _userRepository = userRepository;
             _tokenService = tokenService;
+            _passwordHasher = passwordHasher;
         }
 
         public async Task<string> Handle(LoginCommand request, CancellationToken cancellationToken)
         {
-            var user = await _userRepository.ValidateUserAsync(request.User.UserName, request.User.Password);
+            var hashedPassword = _passwordHasher.HashPassword(request.User.Password);
+            var user = await _userRepository.ValidateUserAsync(request.User.UserName, hashedPassword);
 
             if (user == null)
             {

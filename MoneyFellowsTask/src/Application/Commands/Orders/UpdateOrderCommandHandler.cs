@@ -1,12 +1,6 @@
-﻿using Application.Commands.Products;
-using Core.Entities;
+﻿using Core.Entities;
 using Core.Interfaces.Repositories;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Commands.Orders
 {
@@ -28,6 +22,7 @@ namespace Application.Commands.Orders
                 TotalCost = request.Order.TotalCost,
                 UserId = request.Order.User,
                 DeliveryTime = request.Order.DeliveryTime,
+                OrderProducts = request.Order.OrderDetails.Select(x => new OrderProducts { ProductId = x.ProductId, Quantity = x.Quantity }).ToList(),
             };
 
             await _orderRepository.UpdateAsync(order);

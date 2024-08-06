@@ -3,7 +3,7 @@ using System.Reflection.Metadata;
 
 namespace Core.Entities
 {
-    public class Product : AuditEntity
+    public class Product
     {
         [Key]
         public int Id { get; set; }

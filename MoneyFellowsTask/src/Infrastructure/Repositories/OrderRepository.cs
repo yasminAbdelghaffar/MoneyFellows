@@ -38,13 +38,18 @@ namespace Infrastructure.Repositories
             int currentPage = pageNumber ?? 1;
             int currentPageSize = pageSize ?? 10;
 
-            return await _context.Order.AsNoTracking().Where(x => userId == null).Select(o => new OrderDTO() //User to be added in DB then checked here
+            return await _context.Order.AsNoTracking().Where(x => userId == null || x.UserId == userId).Select(o => new OrderDTO()
             {
                 DeliveryAddress = o.DeliveryAddress,
                 DeliveryTime = o.DeliveryTime,
                 Id  = o.Id, 
                 TotalCost = o.TotalCost,
                 User = o.UserId,
+                OrderDetails = o.OrderProducts.Select( od =>  new OrderDetailsDTO()
+                {
+                    ProductId = od.ProductId,
+                    Quantity = od.Quantity,
+                }).ToList()
             }).Skip((currentPage - 1) * currentPageSize).Take(currentPageSize).ToListAsync();
         }
 
@@ -57,6 +62,11 @@ namespace Infrastructure.Repositories
                 Id = o.Id,
                 TotalCost = o.TotalCost,
                 User = o.UserId,
+                OrderDetails = o.OrderProducts.Select(od => new OrderDetailsDTO()
+                {
+                    ProductId = od.ProductId,
+                    Quantity = od.Quantity,
+                }).ToList()
             }).FirstOrDefaultAsync();
         }
     }

@@ -1,4 +1,5 @@
 ﻿using Core.DTOs.Product;
+using Core.Validators;
 using System.ComponentModel.DataAnnotations;
 
 namespace Core.DTOs.Order
@@ -6,14 +7,10 @@ namespace Core.DTOs.Order
     public class OrderDTO
     {
         public int Id { get; set; }
-        [Required]
         public string DeliveryAddress { get; set; }
-        [Required]
         public decimal TotalCost { get; set; }
-        [Required]
         public int User { get; set; }
-        [Required]
         public DateTime DeliveryTime { get; set; }
-        List<ProductDTO>  Products { get; set; }
+        public List<OrderDetailsDTO>  OrderDetails { get; set; }
     }
 }

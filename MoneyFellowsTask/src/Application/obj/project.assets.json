@@ -2,6 +2,19 @@
   "version": 3,
   "targets": {
     "net8.0": {
+      "FluentValidation/11.9.2": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/FluentValidation.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/FluentValidation.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "MediatR/12.4.0": {
         "type": "package",
         "dependencies": {
@@ -294,6 +307,31 @@
     }
   },
   "libraries": {
+    "FluentValidation/11.9.2": {
+      "sha512": "XeHp9LvFvu1fsQ/NvDCymV02GOCB1nz7ZUhfpI3uMhCcHTkV1K5bMkv+Nc/kuNYyAsX5+5bcmUanIEMd5QN+Eg==",
+      "type": "package",
+      "path": "fluentvalidation/11.9.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "fluent-validation-icon.png",
+        "fluentvalidation.11.9.2.nupkg.sha512",
+        "fluentvalidation.nuspec",
+        "lib/net5.0/FluentValidation.dll",
+        "lib/net5.0/FluentValidation.xml",
+        "lib/net6.0/FluentValidation.dll",
+        "lib/net6.0/FluentValidation.xml",
+        "lib/net7.0/FluentValidation.dll",
+        "lib/net7.0/FluentValidation.xml",
+        "lib/net8.0/FluentValidation.dll",
+        "lib/net8.0/FluentValidation.xml",
+        "lib/netstandard2.0/FluentValidation.dll",
+        "lib/netstandard2.0/FluentValidation.xml",
+        "lib/netstandard2.1/FluentValidation.dll",
+        "lib/netstandard2.1/FluentValidation.xml"
+      ]
+    },
     "MediatR/12.4.0": {
       "sha512": "s8xhhvsTQqt7jI1XeVqcniiph/QoRmJb1qxVgk7UFpAgOzpzZ0VTl8zV+lFJgxISVqZuJRjmxF+P3AuHyelCrg==",
       "type": "package",
@@ -765,6 +803,7 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "Core >= 1.0.0",
+      "FluentValidation >= 11.9.2",
       "MediatR >= 12.4.0",
       "Microsoft.AspNet.Identity.Core >= 2.2.4",
       "Microsoft.Extensions.Identity.Core >= 8.0.7",
@@ -821,6 +860,11 @@
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
+          "FluentValidation": {
+            "target": "Package",
+            "version": "[11.9.2, )",
+            "versionCentrallyManaged": true
+          },
           "MediatR": {
             "target": "Package",
             "version": "[12.4.0, )",
@@ -843,6 +887,8 @@
           }
         },
         "centralPackageVersions": {
+          "FluentValidation": "[11.9.2, )",
+          "FluentValidation.AspNetCore": "[11.3.0, )",
           "MediatR": "[12.4.0, )",
           "Microsoft.AspNet.Identity.Core": "[2.2.4, )",
           "Microsoft.AspNetCore.Mvc.Versioning": "[5.1.0, )",
@@ -853,6 +899,7 @@
           "Microsoft.EntityFrameworkCore.Tools": "[8.0.7, )",
           "Microsoft.Extensions.Identity.Core": "[8.0.7, )",
           "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "[1.19.6, )",
+          "Moq": "[4.20.70, )",
           "Newtonsoft.Json": "[13.0.3, )",
           "Npgsql": "[8.0.3, )",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "[8.0.4, )",
@@ -860,7 +907,9 @@
           "Serilog.Extensions.Hosting": "[8.0.0, )",
           "Serilog.Settings.Configuration": "[8.0.2, )",
           "Serilog.Sinks.File": "[6.0.0, )",
-          "System.IdentityModel.Tokens.Jwt": "[8.0.1, )"
+          "System.IdentityModel.Tokens.Jwt": "[8.0.1, )",
+          "xunit.assert": "[2.9.0, )",
+          "xunit.extensibility.core": "[2.9.0, )"
         },
         "imports": [
           "net461",
