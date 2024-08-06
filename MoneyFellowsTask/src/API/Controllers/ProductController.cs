@@ -1,6 +1,6 @@
 ﻿using API.ActionFilters;
 using Application.Commands.Products;
-using Application.Queries;
+using Application.Queries.Product;
 using Core.Enums;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

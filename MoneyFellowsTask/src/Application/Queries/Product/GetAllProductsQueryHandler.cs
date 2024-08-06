@@ -2,7 +2,7 @@
 using Core.Interfaces.Repositories;
 using MediatR;
 
-namespace Application.Queries
+namespace Application.Queries.Product
 {
     public class GetAllProductsQueryHandler : IRequestHandler<GetAllProductsQuery, List<ProductDTO>>
     {

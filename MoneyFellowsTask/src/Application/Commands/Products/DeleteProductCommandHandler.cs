@@ -1,12 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Core.Interfaces.Repositories;
+using MediatR;
 
 namespace Application.Commands.Products
 {
-    internal class DeleteProductCommandHandler
+    public class DeleteProductCommandHandler : IRequestHandler<DeleteProductCommand>
     {
+        private readonly IProductRepository _productRepository;
+
+        public DeleteProductCommandHandler(IProductRepository productRepository)
+        {
+            _productRepository = productRepository;
+        }
+
+        public async Task Handle(DeleteProductCommand request, CancellationToken cancellationToken)
+        {
+            await _productRepository.DeleteAsync(request.id);
+        }
     }
 }

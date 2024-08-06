@@ -11,8 +11,9 @@ namespace Core.Entities
         [Required]
         public decimal TotalCost { get; set; }
         [Required]
-        public int User { get; set; }
+        public int UserId { get; set; }
         [Required]
         public DateTime DeliveryTime { get; set; }
+        public User User { get; set; }
     }
 }

@@ -44,7 +44,7 @@ namespace Infrastructure.Repositories
                 DeliveryTime = o.DeliveryTime,
                 Id  = o.Id, 
                 TotalCost = o.TotalCost,
-                User = o.User,
+                User = o.UserId,
             }).Skip((currentPage - 1) * currentPageSize).Take(currentPageSize).ToListAsync();
         }
 
@@ -56,7 +56,7 @@ namespace Infrastructure.Repositories
                 DeliveryTime = o.DeliveryTime,
                 Id = o.Id,
                 TotalCost = o.TotalCost,
-                User = o.User,
+                User = o.UserId,
             }).FirstOrDefaultAsync();
         }
     }
